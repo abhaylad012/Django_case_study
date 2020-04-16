@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends 'head_foot.html' %}
+    {% block content %}
+    <meta charset="UTF-8">
+    <title>Home</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js"
+            integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+
+    <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready( function () {
+            $('#myTable').DataTable();
+        } );
+
+    </script>-->
+
+    <!--<title>Shop Item - Start Bootstrap Template</title>-->
+
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'sweetalert/sweetalert.min.js' %}"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'home/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'home/css/shop-item.css'%}" rel="stylesheet">
+
+    <style>
+    .page_no{
+        padding: 5px;
+        width: 35px;
+        text-align: center;
+        align-self: center;
+        /* color: grey; */
+        border: 8px solid #f2f2f2;
+        background-color:lightgrey;
+        box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .page_arr{
+        width:35px;
+        box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    }
+
+    .view{
+            height:40px;
+            font-size:20px;
+    }
+
+    .lab{
+            font-size:22px;
+            font-weight:550;
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<!-- Page Content -->
+<div class="container" style="background-color:#f2f2f2; margin-top:30px; margin-bottom:15px;">
+
+    <div class="row" style="box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);">
+
+
+        <!--page no {{prods.number}}-->
+
+
+        <div class="col-lg-3">
+            <h1 class="my-4">Products</h1>
+            <div class="list-group" style="box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);">
+                <table id="myTable">
+                    {% for message in messages %}
+                    <tr>
+                        <td>
+                            <h4 style="color:red; font-size:16px;">
+                                {{message}}
+                            </h4>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    {% for prod in prods%}
+                    <tr>
+                        <td>
+                            <a href="/product/view/{{prod.prod_id}}" class="list-group-item">Product {{prod.prod_id}}</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    </tr>
+                </table>
+                <!--<a href="#" class="list-group-item active">Product 1</a>
+                <a href="#" class="list-group-item">product 2</a>
+                <a href="#" class="list-group-item">Product 3</a>-->
+            </div>
+        </div>
+        <!-- /.col-lg-3 -->
+        <!-- <table>
+             <tr>
+                 <td>-->
+
+        <div class="col-lg-9" style="margin-bottom:15px;">
+
+            <!--<div class="card mt-4"> Previous page:{{prods.has_previous}}| page no:{{prods.number}}
+                | item count:{{prods.paginator.count}}
+                | no of pages:{{prods.paginator.num_pages}}
+                | page range:{{prods.paginator.page_range}}
+                | Next page:{{prods.has_next}}|
+            </div>-->
+
+            <!--<div class="card mt-4">
+                {% for num in prods.paginator.page_range %}
+                Page range: | {{num}} |
+                {% endfor %}
+            </div>-->
+
+            <!--<div class="card mt-4">
+                Page range:
+                {% for num in prods.paginator.page_range %}
+                {% if num == prods.number %}
+                |<strong>{{num}}</strong>|
+                {% else %}
+                | {{num}} |
+                {% endif %}
+                {% endfor %}
+            </div>-->
+
+            <!-- <div class="card mt-4">
+                 <table>
+                     <tr>
+                         {% if prods.has_previous %}
+                         <td>
+                             <a href="?page=1"> << </a>
+                         </td>
+                         <td>
+                             <a href="?page={{prods.previous_page_number}}"> < </a>
+                         </td>
+                         {% endif %}
+
+                         Page range:
+                         {% for num in prods.paginator.page_range %}
+                         {% if num == prods.number %}
+                         <td>
+                             |<strong>{{num}}</strong>|
+                         </td>
+                         {% else %}
+                         <td>
+                             | {{num}} |
+                         </td>
+                         {% endif %}
+                         {% endfor %}
+
+                         {% if prods.has_next %}
+                         <td>
+                             <a href="?page={{prods.next_page_number}}"> > </a>
+                         </td>
+                         <td>
+                             <a href="?page={{prods.paginator.num_pages}}"> >> </a>
+                         </td>
+                         {% endif %}
+                     </tr>
+                 </table>
+             </div>-->
+
+            <!--for pagination-->
+            <div class="card mt-4" style="background-color:#f2f2f2; border:#f2f2f2;">
+                <div class="pagination" style="align-self: center; font-size:20px;">
+                    <table>
+                        <tr>
+                            {% if prods.has_previous %}
+                            <td class="page_arr">
+                                <a class="pagination-action" href="?page=1">
+                                    <i class="fas fa-angle-double-left"></i>
+                                    <!--<< -->
+                                </a>
+                            </td>
+                            <td class="page_arr">
+                                <a class="pagination-action" href="?page={{prods.previous_page_number}}">
+                                    <i class="fas fa-angle-left"></i>
+                                    <!--< -->
+                                </a>
+                            </td>
+                            {% endif %}
+
+                            <!--Page range:-->
+                            {% for num in prods.paginator.page_range %}
+                            {% if num == prods.number %}
+                            <td class="page_no">
+                                <strong>
+                                    <a class="pagination-action" href="?page={{num}}"> {{num}} </a>
+                                </strong>
+                            </td>
+                            {% else %}
+                            <td class="page_no">
+                                <!--| {{num}} |-->
+                                <a class="pagination-action" href="?page={{num}}"> {{num}} </a>
+                            </td>
+                            {% endif %}
+                            {% endfor %}
+
+                            {% if prods.has_next %}
+                            <td class="page_arr">
+                                <a href="?page={{prods.next_page_number}}">
+                                    <!--&gt; -->
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </td>
+                            <td class="page_arr">
+                                <a href="?page={{prods.paginator.num_pages}}">
+                                    <!--&gt;> -->
+                                    <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            </td>
+                            {% endif %}
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <!--<div class="card mt-4">
+                <img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">
+                <div class="card-body">
+                    <h3 class="card-title">Product Name</h3>
+
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit
+                        fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur
+                        praesentium animi perspiciatis molestias iure, ducimus!</p>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    4.0 stars
+                </div>
+            </div>
+-->
+
+            {% for prod in prods %}
+            <div class="card mt-4" style="box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);">
+                <table>
+                    <tr>
+                        <td style="width:300px;">
+                            <!--<img class="card-img-top img-fluid" src="http://placehold.it/900x400" alt="">-->
+                            <img class="card-img-top img-fluid" src="{{prod.prod_logo.url}}" alt=""
+                                 style="height:275px; width:275px; margin:10px;">
+                            <!--<img class="card-img-top img-fluid" src="{{prod.prod_logo}}" alt="">-->
+                        </td>
+                        <td style="margin:10px;">
+                             <div class="view">
+                                <label class="lab">Product Id:</label>
+                                <a href="/product/view/{{prod.prod_id}}">{{prod.prod_id}}</a>
+                            </div>
+
+                            <div class="view">
+                                <label class="lab">Product Name:</label>
+                                {{prod.prod_name}}
+                            </div>
+
+                            <div class="view">
+                                <label class="lab">Created by:</label>
+                                {{prod.prod_cr_by}}
+                            </div>
+
+                            <div class="view">
+                                <label class="lab">Topic:</label>
+                                {{prod.prod_topic}}
+                            </div>
+
+                            <div class="view">
+                                <label class="lab">Short Description:</label>
+                                {{prod.prod_short}}
+                            </div>
+
+                            <!--<h4 class="card-title">Product Id:
+                                <a href="/product/view/{{prod.prod_id}}">{{prod.prod_id}}</a></h4>
+
+                            <h4 class="card-title">Created by:
+                                {{prod.prod_cr_by}}</h4>
+
+                            <h3 class="card-title">Product Name:
+                                {{prod.prod_name}}</h3>
+
+                            <p class="card-text" style="margin-bottom:0px!important; font-size:20px;"><h4>
+                            Topic:</h4> {{prod.prod_topic}}</p>
+
+                            <p class="card-text" style="margin-bottom:0px !important; font-size:20px;"><h4>
+                            Desc:</h4>
+                            {{prod.prod_short}}</p>-->
+
+                            <!--<span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                            4.0 stars-->
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+
+            {% endfor %}
+
+            <!-- /.card -->
+
+
+            <!-- /.card -->
+
+        </div>
+        <!--</td>
+    </tr>
+</table>-->
+        <!-- /.col-lg-9 -->
+
+    </div>
+
+</div>
+<!-- /.container -->
+
+<!-- Footer -->
+<!--<footer class="py-5 bg-dark">-->
+<!--<div class="container">-->
+<!--<p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>-->
+<!--</div>-->
+<!--&lt;!&ndash; /.container &ndash;&gt;-->
+<!--</footer>-->
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'home/vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'home/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+
+</body>
+{% endblock %}
+</html>

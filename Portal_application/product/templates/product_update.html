@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    {% extends 'head_foot.html' %}
+    {% block content %}
+
+    <!-- first load django static tag. -->
+    {% load static %}
+
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Au Register Forms by Colorlib</title>
+
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'product_form_vendor/vendor/mdi-font/css/material-design-iconic-font.min.css' %}"
+          rel="stylesheet" media="all">
+    <link href="{% static 'product_form_vendor/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet"
+          media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'product_form_vendor/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'product_form_vendor/vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'product_form_vendor/css/main.css' %}" rel="stylesheet" media="all">
+</head>
+
+<body>
+<div class="page-wrapper  p-t-130 p-b-100 font-poppins" style="background-color:#f2f2f2;">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-4">
+            <div class="card-body">
+                <h2 class="title">Product Details</h2>
+                <form method="POST" action="/product/update/{{prod_id}}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!--<div class="row row-space">-->
+                    <!--<div class="col-2">-->
+                    <div class="input-group">
+                        <label class="label">Name of Product</label>
+                        <input class="input--style-4" type="text" name="p_name" value="{{prod_name}}">
+
+                    </div>
+                    <!--</div>-->
+                    <!--<div class="col-2">-->
+
+                    <div class="input-group">
+                        <label class="label">Short Overview:</label>
+                        <textarea class="input--style-4" type="text" style ="width:-webkit-fill-available;border: 0px;min-height:150px;line-height:35px;"
+                                  name="p_short" value="{{prod_short}}">{{prod_short}}</textarea>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="label">Description:</label>
+                        <!--<input class="input&#45;&#45;style-4" type="text" name="p_desc" value="{{prod_desc}}">-->
+                        <textarea class="input--style-4" style ="width:-webkit-fill-available;    border: 0px;min-height:150px;line-height:35px;"
+                                  type="text" name="p_desc" value="{{prod_desc}}">{{prod_desc}}</textarea>
+                    </div>
+
+
+                    <div class="input-group">
+                        <label class="label">Logo</label>
+                        <input class="input--style-2" type="file" name="p_logo"  id="file">
+
+                        <div>
+                            {% if prod_logo == 'False' %}
+
+                            {% endif %}
+                            {% if prod_logo != 'False' %}
+                            <a href="{{prod_logo.url}}">{{prod_logo}}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="label">Topic</label>
+                        <input class="input--style-4" type="text" name="p_topic" value="{{prod_topic}}">
+                    </div>
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="input-group">
+                        <label class="label">Documents</label>
+                        <input class="input&#45;&#45;style-2" type="file">
+                    </div>-->
+
+
+                    <div class="p-t-15">
+                        <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Jquery JS-->
+<script src="{% static 'product_form_vendor/vendor/jquery/jquery.min.js' %}"></script>
+<!-- Vendor JS-->
+<script src="{% static 'product_form_vendor/vendor/select2/select2.min.js' %}"></script>
+<script src="{% static 'product_form_vendor/vendor/datepicker/moment.min.js' %}"></script>
+<script src="{% static 'product_form_vendor/vendor/datepicker/daterangepicker.js' %}"></script>
+
+<!-- Main JS-->
+<script src="{% static 'product_form_vendor/js/global.js' %}"></script>
+<!--<script>
+    &lt;!&ndash;$("#file").change(function(){
+        var file_value = $("#file").val();
+        alert(file_value);
+
+        if (file_value == " "){
+            alert("value empty dont hide div");
+        }
+        else{
+            alert("hide div");
+        }
+&ndash;&gt;
+
+    });
+
+</script>-->
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+{% endblock %}
+</html>
+<!-- end document-->
